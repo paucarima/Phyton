@@ -5,40 +5,47 @@ class Auto:
         self.anio = anio
         self.kilometraje = kilometraje
 
-    def mostrar_información(self):
+    @staticmethod
+    def mostrar_información(auto):
+        return auto.__dict__
 
-        print(f"Marca: {self.marca} ,Modelo: {self.modelo} , Anio: {
-              self.anio} ,Kilometraje: {self.kilometraje}")
-
-    def actualizar_kilometraje(self, valor):
+    @classmethod
+    def actualizar_kilometraje(cls, valor):
         if float(valor) <= 0:
             print("No se puede reducir el kilometraje:")
         else:
-            self.kilometraje = valor
-            print(f"Tu kilometraje es: {self.kilometraje}")
-            return self.kilometraje
+            cls.kilometraje = valor
+            print(f"Tu kilometraje inicial: {cls.kilometraje}")
+            return cls.kilometraje
 
-    def realizar_viaje(self, valor):
+    @classmethod
+    def realizar_viaje(cls, valor):
         if float(valor) <= 0:
             print("la cantidad de kilómetros debe ser positiva:")
         else:
-            self.kilometraje = float(self.kilometraje)+float(valor)
-            print(f"Tu kilometraje es: {self.kilometraje}")
-            return self.kilometraje
+            cls.kilometraje = float(cls.kilometraje)+float(valor)
+            print(f"Tu kilometraje en viaje: {cls.kilometraje}")
+            return cls.kilometraje
 
-    def estado_auto(self):
-        if (self.kilometraje < 20000):
+    @classmethod
+    def estado_auto(cls):
+        if (cls.kilometraje < 20000):
             print("Estoy como nuevo")
-        elif (self.kilometraje >= 20000 and self.kilometraje <= 100000):
+        elif (cls.kilometraje >= 20000 and cls.kilometraje <= 100000):
             print("Ya estoy usado")
-        elif (self.kilometraje > 100000):
+        elif (cls.kilometraje > 100000):
             print("¡Ya déjame descansar por favor!")
 
+    @classmethod
+    def auto_news(cls):
+        anio = "2024"
+        marca = "Toyota"
+        modelo = "4x4"
+        kilometraje = 0
+        return cls(marca, modelo, anio, kilometraje)
 
-mi_auto = Auto("Chevrolet", "Doble Cabina 4x4", "2011")
-mi_auto.mostrar_información()
-valor1 = input("Ingrese el kilometraje: \n")
-valor2 = input("Ingrese otra vez kilometraje: \n")
-mi_auto.actualizar_kilometraje(valor1)
-mi_auto.realizar_viaje(valor2)
-mi_auto.estado_auto()
+    @staticmethod
+    def comparar_kilometraje(auto1, auto2):
+        if auto1.kilometraje == auto2.kilometraje:
+            return "Los kilometros son iguales"
+        return "Los kilometros son diferentes"
