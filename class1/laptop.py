@@ -24,6 +24,15 @@ class Laptop:
         }
         return resultado
 
+    def realizar_informe_uso(self):
+        resultado_informe = {
+            "Tipo": "Generica",
+            "Uso Recomendado": "Tareas cotidianas",
+            "Horas de uso": 5,
+            "Diagnostico actual": self.ralizar_diagnostico_sistema()
+        }
+        return resultado_informe
+
     @staticmethod
     def comparar_costo(lapto1, lapto2):
         if lapto1.costo == lapto2.costo:
